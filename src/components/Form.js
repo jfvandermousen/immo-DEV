@@ -222,11 +222,11 @@ axios({
         />
 
       </label>
-      <button className="w-full mt-8 btn btn-blue shadow-xl" type="submit">Search </button>
+      <button className="w-full  mt-8 btn btn-blue shadow-xl" type="submit">Search </button>
     </form>
 
     <div className=" text-2xl mb-8 w-full mt-8 btn btn-blue prediction">
-      <h2 >Our estimation is : {this.state.prediction}€</h2>
+      <h2 className=" p-4">Our estimation is : {this.state.prediction}€</h2>
       </div>
     </div>
 
