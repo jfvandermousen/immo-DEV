@@ -27,10 +27,10 @@ select {
   justify-content: space-between;
 }
 form {
-  border: 2px solid rgba(59, 130, 246, 0.5);
-  padding: 2em;
-  max-width: 600px;
-  /* box-shadow: 10px 10px 10px rgba(224, 224, 224, 0.329); */
+  
+    border: 4px solid rgba(59,130,246,.8);
+    padding: 2em;
+    max-width: 600px;
 }
 label {
   font-weight: 600;
@@ -62,4 +62,3 @@ label {
 .nav {
   margin-right: 1em;
 }
-

@@ -5,7 +5,7 @@ import Home from './Home';
 
 function App() {
   return (
-    <div className="">
+    <div className="main">
       <Home />
       <Form />
       

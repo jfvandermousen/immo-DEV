@@ -162,7 +162,7 @@ axios({
     : null;
 
     return (
-        <div className=" container mt-10 flex flex-col items-center  w-full bg-teal-lighter">
+        <div className="anim container mt-10 flex flex-col items-center  w-full bg-teal-lighter">
             <form className="w-full flex flex-col items-cente shadow-xl " onSubmit={this.handleSubmit}>
             <label className=" label-left">What are you loooking for ?</label>
 
@@ -222,7 +222,9 @@ axios({
         />
 
       </label>
-      <button className="w-full  mt-8 btn btn-blue shadow-xl" type="submit">Search </button>
+      <button className="w-full p-4 mt-8 btn btn-blue shadow-xl" type="submit">
+          <p className=" text-2xl p-4">Search</p>
+           </button>
     </form>
 
     <div className=" text-2xl mb-8 w-full mt-8 btn btn-blue prediction">
