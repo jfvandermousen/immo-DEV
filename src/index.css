@@ -45,11 +45,14 @@ label {
   max-width: 600px;
   font-weight: 700;
 }
-
+.logo {
+  padding-bottom: 0.5em;
+}
 
   header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 2em 2em;
     background-color: #6930c3;
     color: white;
