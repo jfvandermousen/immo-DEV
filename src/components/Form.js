@@ -12,7 +12,8 @@ export default class Form extends React.Component {
      "terrace" : false,"terrace-area": 0, "prediction" : 0, 
     'checked-terrace' : false,'garden': false,'checked-garden' : false,
     'garden-area' : 0 ,'facades-number': 0,'swimming-pool': false,
-    'checked-facades': "APARTMENT", 'building-state':"NEW"
+    'checked-facades': "APARTMENT", 'building-state':"NEW",
+    'checked-land': "APPARTMENT",'land-area': 0
 };
 
 
@@ -31,6 +32,11 @@ export default class Form extends React.Component {
       onGardenAreaChange = e => {
         this.setState({
           'garden-area': e.target.value,  
+        });
+      };
+      onLandAreaChange = e => {
+        this.setState({
+          'land-area': e.target.value,  
         });
       };
 
@@ -88,6 +94,7 @@ export default class Form extends React.Component {
                     this.setState(initialState => ({
                         'property-type': e.target.value,  
                         'checked-facades': !initialState['checked-facades'],
+                        'checked-land': !initialState['checked-land'],
                     }));
                   };
 
@@ -119,6 +126,7 @@ export default class Form extends React.Component {
         'facades-number' : parseInt(this.state['facades-number']),
         'swimming-pool':Boolean(this.state['swimming-pool']),
         'building-state' : parseInt(this.state['building-state']),
+        'land-area' : parseInt(this.state['land-area']),
         
     };
 
@@ -163,6 +171,13 @@ axios({
     </div>
     : null;
 
+    const landContent = this.state['checked-land']
+    ? <div className="flex flex-col items-center  w-full bg-teal-lighter">  <label >Land Area</label> 
+    <input   className="w-full mb-2 border-2 border-indigo-300 py-2 px-3 text-grey-darkest"   
+    type="number" value={this.state['land-area']} onChange={this.onLandAreaChange}/>
+    </div>
+    : null;
+
     return (
         <div className="anim container mt-10 flex flex-col items-center  w-full bg-teal-lighter">
             <form className="w-full flex flex-col items-cente shadow-xl " onSubmit={this.handleSubmit}>
@@ -175,7 +190,7 @@ axios({
         <label className="">Area</label>
 
       <input className="border-2 border-indigo-300 py-2 px-3 text-grey-darkest" type="number" min="20"  value={this.state['area']} onChange={this.onAreaChange} required/>
-
+      {landContent}
       {facadesContent}
 
       <div className="flex flex-col items-center  w-full bg-teal-lighter"> 
