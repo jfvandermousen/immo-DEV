@@ -8,10 +8,11 @@ export default class Form extends React.Component {
     
   state =  {
     'area': 0,'property-type': "HOUSE", 'rooms-number': 0,
-    'zip-code' : 0,'equipped-kitchen':false,"open-fire" : false,
+    'zip-code' : 1000,'equipped-kitchen':false,"open-fire" : false,
      "terrace" : false,"terrace-area": 0, "prediction" : 0, 
     'checked-terrace' : false,'garden': false,'checked-garden' : false,
-    'garden-area' : 0 ,'facades-number': 0,'swimming-pool': false,'checked-facades': "APARTMENT" 
+    'garden-area' : 0 ,'facades-number': 0,'swimming-pool': false,
+    'checked-facades': "APARTMENT", 'building-state':"NEW"
 };
 
 
@@ -33,11 +34,6 @@ export default class Form extends React.Component {
         });
       };
 
-    // onPropertyChange = e => {
-    //     this.setState({
-    //         'property-type': e.target.value,  
-    //     });
-    //   };
 
       onFacadesChange = e => {
         this.setState({
@@ -52,6 +48,11 @@ export default class Form extends React.Component {
       onZipCodeChange = e => {
         this.setState({
             'zip-code': e.target.value,  
+        });
+      }; 
+      onBuildingChange = e => {
+        this.setState({
+            'building-state': e.target.value,  
         });
       }; 
 
@@ -117,6 +118,7 @@ export default class Form extends React.Component {
         'garden-area' : parseInt(this.state['garden-area']),
         'facades-number' : parseInt(this.state['facades-number']),
         'swimming-pool':Boolean(this.state['swimming-pool']),
+        'building-state' : parseInt(this.state['building-state']),
         
     };
 
@@ -131,8 +133,7 @@ axios({
   }).then(res=>{
     console.log(res);
     this.setState({prediction: res.data.prediction});
-   // window.location = "/retrieve" 
-    //This line of code will redirect you once the submission is succeed
+
   })
   .catch(err => console.log(err));
   };
@@ -142,22 +143,23 @@ axios({
   render() {
     const terraceContent = this.state['checked-terrace' ]
     ? <div className="flex flex-col items-center  w-full bg-teal-lighter">  <label >Terrace Area</label> 
-    <input   className="w-full mb-2 border-2 border-indigo-300 py-2 px-3 text-grey-darkest"    type="text" value={this.state['terrace-area']} onChange={this.onTerraceAreaChange}/>
+    <input   className="w-full mb-2 border-2 border-indigo-300 py-2 px-3 text-grey-darkest"    type="number"  value={this.state['terrace-area']} onChange={this.onTerraceAreaChange}/>
     </div>
     : null;
     const gardenContent = this.state['checked-garden' ]
     ? <div className="flex flex-col items-center  w-full bg-teal-lighter">  <label >Garden Area</label> 
-    <input   className="w-full mb-2 border-2 border-indigo-300 py-2 px-3 text-grey-darkest"    type="text" value={this.state['garden-area']} onChange={this.onGardenAreaChange}/>
+    <input   className="w-full mb-2 border-2 border-indigo-300 py-2 px-3 text-grey-darkest"    type="number" value={this.state['garden-area']} onChange={this.onGardenAreaChange}/>
     </div>
     : null;
     const facadesContent = this.state['checked-facades' ]
-    ? <div className="flex flex-col items-center  w-full bg-teal-lighter">  <label >Number of facades</label> 
-<select className="border-2 border-indigo-300 py-2 px-3 text-grey-darkest" value={this.state['facades-number']} onChange={this.onFacadesChange}>
-    <option  name ="property-type">1</option>
-    <option  name ="property-type">2</option>
-    <option  name ="property-type">3</option>
-    <option  name ="property-type">4</option>
-  </select>
+    ? <div className="flex flex-col items-center  w-full bg-teal-lighter"> 
+    <label >Number of facades</label> 
+        <select className="border-2 border-indigo-300 py-2 px-3 text-grey-darkest" value={this.state['facades-number']} onChange={this.onFacadesChange}>
+            <option  name ="property-type">1</option>
+            <option  name ="property-type">2</option>
+            <option  name ="property-type">3</option>
+            <option  name ="property-type">4</option>
+        </select>
     </div>
     : null;
 
@@ -172,14 +174,25 @@ axios({
   </select>
         <label className="">Area</label>
 
-      <input className="border-2 border-indigo-300 py-2 px-3 text-grey-darkest" type="text" value={this.state['area']} onChange={this.onAreaChange} required/>
+      <input className="border-2 border-indigo-300 py-2 px-3 text-grey-darkest" type="number" min="20"  value={this.state['area']} onChange={this.onAreaChange} required/>
 
       {facadesContent}
 
+      <div className="flex flex-col items-center  w-full bg-teal-lighter"> 
+    <label >Building State</label> 
+        <select className="border-2 border-indigo-300 py-2 px-3 text-grey-darkest" value={this.state['building-state']} onChange={this.onBuildingChange}>
+            <option  name ="building-state">NEW</option>
+            <option  name ="building-state">GOOD</option>
+            <option  name ="building-state">TO RENOVATE</option>
+            <option  name ="building-state">JUST RENOVATED</option>
+            <option  name ="building-state">TO REBUILD</option>
+        </select>
+    </div>
+
         <label>Number of rooms</label>
-        <input className="border-2 border-indigo-300 py-2 px-3 text-grey-darkest" type="text" value={this.state['rooms-number']} onChange={this.onRoomsNumberChange} required/>
+        <input className="border-2 border-indigo-300 py-2 px-3 text-grey-darkest" type="number" min="1" value={this.state['rooms-number']} onChange={this.onRoomsNumberChange} required/>
         <label>Zipcode</label>
-        <input className="mb-8 border-2 border-indigo-300 py-2 px-3 text-grey-darkest" type="text" value={this.state['zip-code']} onChange={this.onZipCodeChange} required/>
+        <input className="mb-8 border-2 border-indigo-300 py-2 px-3 text-grey-darkest" type="text"  pattern="\d{4}" value={this.state['zip-code']} onChange={this.onZipCodeChange} required/>
         <label className="check">Equipped Kitchen
         <input
           type="checkbox"

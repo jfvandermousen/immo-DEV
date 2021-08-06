@@ -46,7 +46,7 @@ label {
   font-weight: 700;
 }
 .logo {
-  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
   header {
@@ -62,3 +62,6 @@ label {
 .nav {
   margin-right: 1em;
 }
+.title.container {
+  padding-left: 0;
+  }
