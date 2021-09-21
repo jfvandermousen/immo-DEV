@@ -52,17 +52,20 @@ label {
 
   header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     padding: 2em 2em;
     background-color: #6930c3;
     color: white;
     font-weight:bolder ;
 }
-.nav {
-  margin-right: 1em;
+.nav-home {
+  margin-right:1em;
 }
-.title.container {
-  /* padding-left: 0; */
-  }
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 600px;
+}
